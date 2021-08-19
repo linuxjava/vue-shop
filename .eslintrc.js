@@ -35,6 +35,7 @@ module.exports = {
     //禁止console报错检查
     'no-console':  'off',
     //禁止空格报错检查
-    'generator-star-spacing': 'off'
+    'generator-star-spacing': 'off',
+    'space-before-function-paren': 0
   }
 }
