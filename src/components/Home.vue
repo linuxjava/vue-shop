@@ -13,7 +13,7 @@
           |||
         </div>
         <el-menu background-color="#333744" text-color="#fff" active-text-color="#409EFF" :unique-opened="true"
-          :collapse="isCollapse" :collapse-transition="false" :router="true">
+          :collapse="isCollapse" :collapse-transition="false" :router="true" :default-active="curActive">
           <!-- :index接收一个字符串，而item.id是一个数字，因此要转为字符串 -->
           <el-submenu :index="'/' + item.path" v-for="item in menuList" :key="item.id">
             <template slot="title">
@@ -21,7 +21,8 @@
               <span>{{item.authName}}</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item :index="'/' + child.path" v-for="child in item.children" :key="child.id">
+              <el-menu-item :index="'/' + child.path" v-for="child in item.children" :key="child.id"
+               @click="clickMenuItem('/' + child.path)">
                 <template slot="title">
                   <i class="el-icon-menu"></i>
                   <span>{{child.authName}}</span>
@@ -51,11 +52,15 @@ export default {
         102 : 'iconfont icon-danju',
         145 : 'iconfont icon-baobiao'
       },
-      isCollapse: false
+      //是否折叠
+      isCollapse: false,
+      //当前激活菜单
+      curActive: ''
     }
   },
   created(){
     this.getMenus()
+    this.curActive = window.sessionStorage.getItem('curActive')
   },
   methods: {
     logout() {
@@ -72,6 +77,16 @@ export default {
     },
     toggleCollapse(){
       this.isCollapse = !this.isCollapse
+    },
+    //点击菜单
+    clickMenuItem(index){
+      this.curActive = index;
+      window.sessionStorage.setItem('curActive', index)
+    },
+    //清除菜单选中状态
+    clearMenuItem(){
+      this.curActive = '';
+      window.sessionStorage.removeItem('curActive')
     }
   }
 }
@@ -104,7 +119,7 @@ export default {
   .iconfont{
     margin-right: 10px;
   }
-  
+
   .toggle-box{
     color: white;
     letter-spacing: 0.2;
