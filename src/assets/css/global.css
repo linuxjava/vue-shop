@@ -21,3 +21,8 @@ body, html, #app{
 .el-pagination{
   margin-top: 15px;
 }
+
+/*设置商品分类中级联选择框高度*/
+.el-cascader-panel{
+  height: 300px;
+}
