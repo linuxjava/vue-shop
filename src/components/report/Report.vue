@@ -1,5 +1,11 @@
 <template>
-  <div>数据报表</div>
+  <el-card>
+  <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-breadcrumb-item :to="{ path: '/home' }" @click.native="backHome">首页</el-breadcrumb-item>
+    <el-breadcrumb-item>数据统计</el-breadcrumb-item>
+    <el-breadcrumb-item>数据报表</el-breadcrumb-item>
+  </el-breadcrumb>
+  </el-card>
 </template>
 
 <script>
@@ -7,6 +13,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
+.el-card {
+  margin-bottom: 60px;
+}
 </style>
